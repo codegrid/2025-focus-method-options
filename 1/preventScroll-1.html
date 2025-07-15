@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>preventScroll: true のデモ</title>
+  <style>
+  #sec1 {
+    margin-block: 100vh;
+  }
+
+  #sec1:focus {
+    outline: 2px solid tomato;
+  }
+  </style>
+</head>
+<body>
+
+<p>
+  <a href="#sec1">ページ内リンク</a><br>
+  <label><input type="checkbox" id="optionEnable" checked> preventScroll有効化</label>
+</p>
+<p id="sec1" tabindex="-1">
+  ページ内リンクのターゲット
+</p>
+
+<script>
+const links = document.querySelectorAll("a[href^='#']");
+const checkbox = document.querySelector("#optionEnable");
+
+links.forEach(link => {
+  link.addEventListener("click", onClickLink);
+});
+
+function onClickLink(event) {
+  event.preventDefault(); // 規定の動を防ぐ
+  const targetSelector = this.getAttribute("href");
+  const targetElement = document.querySelector(targetSelector);
+
+  if (targetElement) {
+    targetElement.focus({
+      preventScroll: checkbox.checked // スクロールを防ぐかどうか
+    });
+  }
+}
+</script>
+
+</body>
+</html>

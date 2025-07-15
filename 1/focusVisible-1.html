@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>focusVisible のデモ</title>
+  <style>
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid tomato;
+  }
+
+  button {
+    font-size: 1em;
+    background-color: white;
+    padding: 0.5em 1em;
+    border: 1px solid silver;
+    outline-offset: 2px;
+  }
+
+  button:focus {
+    border-color: black;
+    background-color: antiquewhite;
+  }
+  </style>
+</head>
+<body>
+
+<form id="optionForm">
+  <p>
+    focusVisible:
+    <label><input type="radio" name="optionEnable" value="" checked> 無指定</label>
+    <label><input type="radio" name="optionEnable" value="true"> true</label>
+    <label><input type="radio" name="optionEnable" value="false"> false</label>
+  </p>
+</form>
+<p>
+  <button id="trigger">次のボタンにフォーカス</button>
+</p>
+<p>
+  <button id="target">フォーカス対象のボタン</button>
+</p>
+
+<script>
+const optionForm = document.getElementById("optionForm");
+const trigger = document.querySelector("#trigger");
+const target = document.querySelector("#target");
+
+optionForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
+trigger.addEventListener("click", focusTarget);
+
+function focusTarget() {
+  const focusVisibleValue = new FormData(optionForm).get("optionEnable");
+
+  const options = {};
+  if (focusVisibleValue !== "") {
+    options.focusVisible = focusVisibleValue === "true";
+  }
+
+  target.focus(options);
+}
+</script>
+
+</body>
+</html>
