@@ -30,12 +30,14 @@
 <body>
 
 <form id="optionForm">
-  <p>
-    focusVisible:
-    <label><input type="radio" name="optionEnable" value="" checked> 無指定</label>
-    <label><input type="radio" name="optionEnable" value="true"> true</label>
-    <label><input type="radio" name="optionEnable" value="false"> false</label>
-  </p>
+  <fieldset>
+    <legend>focusVisible:</legend>
+    <p>
+      <label><input type="radio" name="optionEnable" value="" checked> 無指定</label>
+      <label><input type="radio" name="optionEnable" value="true"> true</label>
+      <label><input type="radio" name="optionEnable" value="false"> false</label>
+    </p>
+  </fieldset>
 </form>
 <p>
   <button id="trigger">次のボタンにフォーカス</button>
